@@ -1,0 +1,13 @@
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\CoinWatch\obj\Debug\CoinWatch.csproj.CoreCompileInputs.cache
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\CoinWatch\bin\Debug\CoinWatch.dll.config
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\CoinWatch\bin\Debug\CoinWatch.dll
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\CoinWatch\bin\Debug\CoinWatch.pdb
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\CoinWatch\bin\Debug\EntityFramework.dll
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\CoinWatch\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\CoinWatch\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\CoinWatch\bin\Debug\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\CoinWatch\bin\Debug\EntityFramework.xml
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\CoinWatch\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\CoinWatch\obj\Debug\CoinWatch.dll
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\CoinWatch\obj\Debug\CoinWatch.pdb
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\CoinWatch\obj\Debug\CoinWatch.csprojResolveAssemblyReference.cache

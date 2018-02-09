@@ -1,0 +1,156 @@
+﻿<UserControl x:Class="CoinWatchViews.CoinProfile"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:local="clr-namespace:CoinWatchViews"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="Brush1" Color="#FFDDDDDD"/>
+
+        <DataTemplate  x:Key="PostListDataTemplate">
+<!--            MouseRightButtonDown="RightClick"-->
+            <Grid Margin="0,2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="35" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Grid.ColumnSpan="3">
+                    <TextBlock  Text="{Binding USER_ID}" FontSize="8" />
+                    <TextBlock  Text="{Binding DATETIME}" FontSize="8" />
+                </StackPanel>
+                <TextBlock  Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="1" Text="{Binding MESSAGE}" FontSize="8" />
+                <Button Grid.Row="2" Grid.Column="0" Width="30" Height="15" Content="Reply" FontSize="8" Margin="0 0 5 0"/>
+                <Button Grid.Row="2" Grid.Column="2" Width="30" Height="15" Content="Like" FontSize="8" Margin="0 0 35 0"/>
+                <Button Grid.Row="2" Grid.Column="2" Width="30" Height="15" Content="Dislike" FontSize="8" Margin="35 0 0 0"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="110"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Left Column -->
+        <Image Source="{Binding Path=Coin.IMAGE}"
+               Grid.Column="0" Grid.Row="0" />
+        <TextBlock Text="{Binding Path=Coin.COIN_NAME}" 
+                   Grid.Row="1" Grid.Column="0"
+                   Margin="20 5"/>
+        <Button Grid.Row="2" Grid.Column="0" 
+                Margin="0,0,0,90" Height="20"
+                Content="{Binding Path=FollowString,  Mode=TwoWay,
+                NotifyOnSourceUpdated=True,
+                NotifyOnTargetUpdated=True,
+                UpdateSourceTrigger=PropertyChanged}"
+                Click="Follow_Button_Click" 
+                MouseEnter="Toggle">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <!-- Set the default value here (if any) 
+                 if you set it directly on the button that will override the trigger -->
+                    <Setter Property="Background" Value="#FF0AC00A"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsFollowed}"
+                                     Value="True">
+                            <Setter Property="Background" Value="#FFD43954" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" 
+                   Text="{Binding Path=PriceAlertSet}" 
+                   Margin="0,45,0,-40" FontSize="11"/>
+
+        <Button Grid.Row="2" Grid.Column="0" 
+                Content="{Binding Path=IsGreaterThanString,  
+                NotifyOnSourceUpdated=True,
+                NotifyOnTargetUpdated=True,
+                UpdateSourceTrigger=PropertyChanged}"
+                Click="ChangeCondition_Click"
+                Margin="0,65,0,55" Height="20" />
+
+        <xctk:DecimalUpDown Grid.Row="2" Grid.Column="0" 
+                            Margin="0,90,0,25" Name="MyUpDownControl"
+                            Height="25"
+                            Value="{Binding Path=CoinValue.COIN_VALUE1}"
+                            Watermark="Enter Price"/>
+
+        <Button Grid.Row="2" Grid.Column="0" 
+                Content="Set Price Alert"
+                Click="SavePriceAlert_Click"
+                Margin="0,120,0,0" Height="20" />
+
+        <!-- Right Column -->
+        <TextBlock Grid.Row="0" 
+                   Grid.Column="1" Height="20"
+                   Margin="0 -90 0 0">
+            <Run Text="€"/>
+            <Run Text="{Binding Path=CoinValue.COIN_VALUE1}" />
+        </TextBlock>
+        
+        <!-- Chart grid -->
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--<Button Grid.Row="1" Click="UpdateAllOnClick">Update Open and Close</Button>-->
+            <lvc:CartesianChart Margin="0 15 0 0" Grid.Row="2" Series="{Binding Path=SeriesCollection}">
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Labels="{Binding Path=Labels}"/>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
+        </Grid>
+        <!-- End Chart grid -->
+
+        <TextBlock Text="Trending Posts" Margin="10 0 0 0"
+                   Grid.Row="1" Grid.Column="1"/>
+
+        <Button Grid.Column="1" Grid.Row="1" 
+                Width="50" Height="20" 
+                Margin="150 -20 0 0" Content="Post" 
+                FontSize="8" Click="Submit_Post_Click"/>
+
+        <TextBox Grid.Column="1" Grid.Row="2" 
+                 Height="20" Margin="10 -155 0 0"
+                 Text="{Binding Path=Post.MESSAGE}"/>
+
+        <ListView GotFocus="PostList_OnGotFocus" ItemsSource="{Binding Path=Posts,  Mode=TwoWay,
+            NotifyOnSourceUpdated=True,
+            NotifyOnTargetUpdated=True,
+            UpdateSourceTrigger=PropertyChanged}"  
+                  x:Name="LbPostList" HorizontalContentAlignment="Stretch" Grid.Column="1" Grid.Row="3"
+                 Margin="10 10 0 0" ItemTemplate="{StaticResource PostListDataTemplate}">
+            <ListView.ContextMenu>
+                <ContextMenu Name="cm" StaysOpen="true">
+                    <MenuItem Header="Delete" Click="Delete_Post"/>
+                    <MenuItem Header="Update" Click="Update_Post"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+
+        </ListView>
+        
+
+    </Grid>
+</UserControl>
+

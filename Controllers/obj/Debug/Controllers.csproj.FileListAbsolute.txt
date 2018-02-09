@@ -1,0 +1,16 @@
+C:\Users\darren\source\repos\CoinWatchProject\CoinWatch\Controllers\bin\Debug\Controllers.dll
+C:\Users\darren\source\repos\CoinWatchProject\CoinWatch\Controllers\bin\Debug\Controllers.pdb
+C:\Users\darren\source\repos\CoinWatchProject\CoinWatch\Controllers\bin\Debug\CoinWatch.dll
+C:\Users\darren\source\repos\CoinWatchProject\CoinWatch\Controllers\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\darren\source\repos\CoinWatchProject\CoinWatch\Controllers\bin\Debug\CoinWatch.pdb
+C:\Users\darren\source\repos\CoinWatchProject\CoinWatch\Controllers\bin\Debug\CoinWatch.dll.config
+C:\Users\darren\source\repos\CoinWatchProject\CoinWatch\Controllers\obj\Debug\Controllers.csprojResolveAssemblyReference.cache
+C:\Users\darren\source\repos\CoinWatchProject\CoinWatch\Controllers\obj\Debug\Controllers.csproj.CoreCompileInputs.cache
+C:\Users\darren\source\repos\CoinWatchProject\CoinWatch\Controllers\obj\Debug\Controllers.dll
+C:\Users\darren\source\repos\CoinWatchProject\CoinWatch\Controllers\obj\Debug\Controllers.pdb
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\Controllers\bin\Debug\LiveCharts.dll
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\Controllers\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\Controllers\bin\Debug\LiveCharts.pdb
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\Controllers\bin\Debug\LiveCharts.xml
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\Controllers\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\darren\Source\Repos\CoinWatchProject\CoinWatch\Controllers\bin\Debug\LiveCharts.Wpf.xml

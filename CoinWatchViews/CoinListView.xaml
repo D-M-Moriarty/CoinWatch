@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="CoinWatchViews.CoinListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CoinWatchViews"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Control.Resources>
+        <DataTemplate x:Key="CoinListDataTemplate">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <StackPanel>
+                    <Image Height="25" Margin="0 5 0 0" Source="{Binding CoinImage}"/>
+                </StackPanel>
+                <StackPanel Margin="10">
+                    <TextBlock Name="Description" IsHitTestVisible="False" Text="{Binding CoinName}" HorizontalAlignment="Left"/>
+                </StackPanel>
+                <StackPanel Margin="10">
+                    <TextBlock IsHitTestVisible="False" HorizontalAlignment="Right">
+                        <Run Text="€"/>
+                        <Run Text="{Binding CoinValue}"/>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </Control.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+            <ListView 
+                  x:Name="CoinList" Grid.Row="2"
+                  MouseDoubleClick="CoinList_OnMouseDoubleClick"
+                  ItemsSource="{Binding Path=CNameCPrices, Mode=TwoWay, 
+                  NotifyOnSourceUpdated=True,
+                  NotifyOnTargetUpdated=True,
+                  UpdateSourceTrigger=PropertyChanged}"
+                  ItemTemplate="{StaticResource CoinListDataTemplate}">
+        </ListView>
+            
+    </Grid>
+</UserControl>

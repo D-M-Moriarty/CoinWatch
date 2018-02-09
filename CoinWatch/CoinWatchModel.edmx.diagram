@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="26653e1008244ca38dbab1618872f7ef" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="Model.COIN" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.COIN_FOLLOW" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.COIN_VALUE" Width="1.5" PointX="3" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.COMMENT" Width="1.5" PointX="6" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.INVALID_LOGIN" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LIKE_DISLIKE" Width="1.5" PointX="8.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LIKED_OBJECT_TYPE" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.NOTIFICATION" Width="1.5" PointX="10.5" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.NOTIFICATION_TYPE" Width="1.5" PointX="8.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.NOTIFIED_USER" Width="1.5" PointX="12.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.POST" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PRICE_ALERT" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USERT" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.VALID_LOGIN" Width="1.5" PointX="3" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WALLET" Width="1.5" PointX="3.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WALLET_LIST" Width="1.5" PointX="6" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.COINS_FOLLOWED_PRICES" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.FOLLOWING_POSTS" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USER_COMMENT_LIKES" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_COIN" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_COIN_FOLLOWED" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_COIN_POST" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_NOTIFICATION_COIN" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_WALLET_COIN" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_PR_COIN_USR" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_USER_FOLLOW" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_LIKED_COMMENT" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_NOTIFICATION_COMMENT" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_POST_COMMENT" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_USER_COMMENT" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_INVALID_LOGIN_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_LIKED_OBJECT_TYPE_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_LIKED_POST" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_LIKED_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_NOTIFICATION_LIKE" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_NOTIFICATION_POST" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_NOTIFICATION_TYPE" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_NOTIFICATION_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_USER_NOTIFICATION" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_NOTIFIED" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_USER_POST" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_VALID_LOGIN_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_WALLET_L_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_WALLET_L_WALLET" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FOLLOWER" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_USER_NOTIFICATION1" />
+        <AssociationConnector Association="Model.FK_NOTIFIED1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="CoinWatchEntities">
+    <EntitySetMapping Name="COINs">
+      <EntityTypeMapping TypeName="Model.COIN">
+        <MappingFragment StoreEntitySet="COIN">
+          <ScalarProperty Name="COIN_ID" ColumnName="COIN_ID" />
+          <ScalarProperty Name="COIN_NAME" ColumnName="COIN_NAME" />
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COIN_FOLLOW">
+      <EntityTypeMapping TypeName="Model.COIN_FOLLOW">
+        <MappingFragment StoreEntitySet="COIN_FOLLOW">
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="COIN_ID" ColumnName="COIN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COIN_VALUE">
+      <EntityTypeMapping TypeName="Model.COIN_VALUE">
+        <MappingFragment StoreEntitySet="COIN_VALUE">
+          <ScalarProperty Name="COIN_ID" ColumnName="COIN_ID" />
+          <ScalarProperty Name="DATETIME" ColumnName="DATETIME" />
+          <ScalarProperty Name="COIN_VALUE1" ColumnName="COIN_VALUE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMMENTs">
+      <EntityTypeMapping TypeName="Model.COMMENT">
+        <MappingFragment StoreEntitySet="COMMENT">
+          <ScalarProperty Name="COMMENT_ID" ColumnName="COMMENT_ID" />
+          <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="COMMENT1" ColumnName="COMMENT" />
+          <ScalarProperty Name="DATETIME" ColumnName="DATETIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INVALID_LOGIN">
+      <EntityTypeMapping TypeName="Model.INVALID_LOGIN">
+        <MappingFragment StoreEntitySet="INVALID_LOGIN">
+          <ScalarProperty Name="SESSION_ID" ColumnName="SESSION_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="INVAL_LOG_DATE" ColumnName="INVAL_LOG_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LIKE_DISLIKE">
+      <EntityTypeMapping TypeName="Model.LIKE_DISLIKE">
+        <MappingFragment StoreEntitySet="LIKE_DISLIKE">
+          <ScalarProperty Name="LIKE_ID" ColumnName="LIKE_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="LIKED_OBJECT_TYPE_ID" ColumnName="LIKED_OBJECT_TYPE_ID" />
+          <ScalarProperty Name="COMMENT_ID" ColumnName="COMMENT_ID" />
+          <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LIKED_OBJECT_TYPE">
+      <EntityTypeMapping TypeName="Model.LIKED_OBJECT_TYPE">
+        <MappingFragment StoreEntitySet="LIKED_OBJECT_TYPE">
+          <ScalarProperty Name="LIKED_OBJECT_TYPE_ID" ColumnName="LIKED_OBJECT_TYPE_ID" />
+          <ScalarProperty Name="LIKED_OBJECT_TYPE1" ColumnName="LIKED_OBJECT_TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NOTIFICATIONs">
+      <EntityTypeMapping TypeName="Model.NOTIFICATION">
+        <MappingFragment StoreEntitySet="NOTIFICATION">
+          <ScalarProperty Name="NOTIFICATION_ID" ColumnName="NOTIFICATION_ID" />
+          <ScalarProperty Name="NOTIFICATION_TYPE_ID" ColumnName="NOTIFICATION_TYPE_ID" />
+          <ScalarProperty Name="COIN_ID" ColumnName="COIN_ID" />
+          <ScalarProperty Name="COMMENT_ID" ColumnName="COMMENT_ID" />
+          <ScalarProperty Name="LIKE_ID" ColumnName="LIKE_ID" />
+          <ScalarProperty Name="FOLLOWER_ID" ColumnName="FOLLOWER_ID" />
+          <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
+          <ScalarProperty Name="DATETIME" ColumnName="DATETIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NOTIFICATION_TYPE">
+      <EntityTypeMapping TypeName="Model.NOTIFICATION_TYPE">
+        <MappingFragment StoreEntitySet="NOTIFICATION_TYPE">
+          <ScalarProperty Name="NOTIFICATION_TYPE_ID" ColumnName="NOTIFICATION_TYPE_ID" />
+          <ScalarProperty Name="NOTIFICATION_TYPE1" ColumnName="NOTIFICATION_TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NOTIFIED_USER">
+      <EntityTypeMapping TypeName="Model.NOTIFIED_USER">
+        <MappingFragment StoreEntitySet="NOTIFIED_USER">
+          <ScalarProperty Name="NOTIFIED_ID" ColumnName="NOTIFIED_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="NOTIFICATION_SEEN" ColumnName="NOTIFICATION_SEEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="POSTs">
+      <EntityTypeMapping TypeName="Model.POST">
+        <MappingFragment StoreEntitySet="POST">
+          <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="COIN_ID" ColumnName="COIN_ID" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="DATETIME" ColumnName="DATETIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRICE_ALERT">
+      <EntityTypeMapping TypeName="Model.PRICE_ALERT">
+        <MappingFragment StoreEntitySet="PRICE_ALERT">
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="COIN_ID" ColumnName="COIN_ID" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="IS_GREATER_THAN" ColumnName="IS_GREATER_THAN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERTs">
+      <EntityTypeMapping TypeName="Model.USERT">
+        <MappingFragment StoreEntitySet="USERT">
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+          <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="ABOUTME" ColumnName="ABOUTME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VALID_LOGIN">
+      <EntityTypeMapping TypeName="Model.VALID_LOGIN">
+        <MappingFragment StoreEntitySet="VALID_LOGIN">
+          <ScalarProperty Name="SESSION_ID" ColumnName="SESSION_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="LOGIN_DATE" ColumnName="LOGIN_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WALLETs">
+      <EntityTypeMapping TypeName="Model.WALLET">
+        <MappingFragment StoreEntitySet="WALLET">
+          <ScalarProperty Name="WALLET_ID" ColumnName="WALLET_ID" />
+          <ScalarProperty Name="COIN_ID" ColumnName="COIN_ID" />
+          <ScalarProperty Name="COIN_ADDRESS" ColumnName="COIN_ADDRESS" />
+          <ScalarProperty Name="BALANCE" ColumnName="BALANCE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WALLET_LIST">
+      <EntityTypeMapping TypeName="Model.WALLET_LIST">
+        <MappingFragment StoreEntitySet="WALLET_LIST">
+          <ScalarProperty Name="WALLET_ID" ColumnName="WALLET_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COINS_FOLLOWED_PRICES">
+      <EntityTypeMapping TypeName="Model.COINS_FOLLOWED_PRICES">
+        <MappingFragment StoreEntitySet="COINS_FOLLOWED_PRICES">
+          <ScalarProperty Name="COIN_ID" ColumnName="COIN_ID" />
+          <ScalarProperty Name="COIN_NAME" ColumnName="COIN_NAME" />
+          <ScalarProperty Name="COIN_VALUE" ColumnName="COIN_VALUE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FOLLOWING_POSTS">
+      <EntityTypeMapping TypeName="Model.FOLLOWING_POSTS">
+        <MappingFragment StoreEntitySet="FOLLOWING_POSTS">
+          <ScalarProperty Name="LOGGED_IN_USER" ColumnName="LOGGED_IN_USER" />
+          <ScalarProperty Name="FOLLOWED_USER" ColumnName="FOLLOWED_USER" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="POST" ColumnName="POST" />
+          <ScalarProperty Name="COIN_NAME" ColumnName="COIN_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USER_COMMENT_LIKES">
+      <EntityTypeMapping TypeName="Model.USER_COMMENT_LIKES">
+        <MappingFragment StoreEntitySet="USER_COMMENT_LIKES">
+          <ScalarProperty Name="COMMENT_ID" ColumnName="COMMENT_ID" />
+          <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+          <ScalarProperty Name="PERSON_WHO_LIKED" ColumnName="PERSON_WHO_LIKED" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FOLLOWER" TypeName="Model.FOLLOWER" StoreEntitySet="FOLLOWER">
+      <EndProperty Name="USERT">
+        <ScalarProperty Name="USER_ID" ColumnName="FOLLOWED_ID" />
+      </EndProperty>
+      <EndProperty Name="USERT1">
+        <ScalarProperty Name="USER_ID" ColumnName="FOLLOWER_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="LOGINUSER" FunctionName="Model.Store.LOGINUSER" />
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,1663 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="12.1" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="COIN">
+          <Key>
+            <PropertyRef Name="COIN_ID" />
+          </Key>
+          <Property Name="COIN_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="COIN_NAME" Type="varchar2" MaxLength="30" />
+          <Property Name="IMAGE" Type="blob" />
+        </EntityType>
+        <EntityType Name="COIN_FOLLOW">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="COIN_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="COIN_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COIN_VALUE">
+          <Key>
+            <PropertyRef Name="COIN_ID" />
+            <PropertyRef Name="DATETIME" />
+          </Key>
+          <Property Name="COIN_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="DATETIME" Type="date" Nullable="false" />
+          <Property Name="COIN_VALUE" Type="number" Precision="12" Scale="2" />
+        </EntityType>
+        <EntityType Name="COMMENT">
+          <Key>
+            <PropertyRef Name="COMMENT_ID" />
+          </Key>
+          <Property Name="COMMENT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="POST_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="USER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="COMMENT" Type="varchar2" MaxLength="250" Nullable="false" />
+          <Property Name="DATETIME" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FOLLOWER">
+          <Key>
+            <PropertyRef Name="FOLLOWER_ID" />
+            <PropertyRef Name="FOLLOWED_ID" />
+          </Key>
+          <Property Name="FOLLOWER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="FOLLOWED_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="INVALID_LOGIN">
+          <Key>
+            <PropertyRef Name="SESSION_ID" />
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="INVAL_LOG_DATE" />
+          </Key>
+          <Property Name="SESSION_ID" Type="number" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="USER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="INVAL_LOG_DATE" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LIKE_DISLIKE">
+          <Key>
+            <PropertyRef Name="LIKE_ID" />
+          </Key>
+          <Property Name="LIKE_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="LIKED_OBJECT_TYPE_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="COMMENT_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="POST_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="TYPE" Type="varchar2" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="LIKED_OBJECT_TYPE">
+          <Key>
+            <PropertyRef Name="LIKED_OBJECT_TYPE_ID" />
+          </Key>
+          <Property Name="LIKED_OBJECT_TYPE_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="LIKED_OBJECT_TYPE" Type="varchar2" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="NOTIFICATION">
+          <Key>
+            <PropertyRef Name="NOTIFICATION_ID" />
+          </Key>
+          <Property Name="NOTIFICATION_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="NOTIFICATION_TYPE_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="COIN_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="COMMENT_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="LIKE_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="FOLLOWER_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="POST_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="DATETIME" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NOTIFICATION_TYPE">
+          <Key>
+            <PropertyRef Name="NOTIFICATION_TYPE_ID" />
+          </Key>
+          <Property Name="NOTIFICATION_TYPE_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="NOTIFICATION_TYPE" Type="varchar2" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="NOTIFIED_USER">
+          <Key>
+            <PropertyRef Name="NOTIFIED_ID" />
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="NOTIFIED_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="USER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="NOTIFICATION_SEEN" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="POST">
+          <Key>
+            <PropertyRef Name="POST_ID" />
+          </Key>
+          <Property Name="POST_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="USER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="COIN_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="MESSAGE" Type="varchar2" MaxLength="250" Nullable="false" />
+          <Property Name="DATETIME" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRICE_ALERT">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="COIN_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="COIN_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="PRICE" Type="number" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="IS_GREATER_THAN" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERT">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar2" MaxLength="25" />
+          <Property Name="FIRSTNAME" Type="varchar2" MaxLength="35" />
+          <Property Name="SURNAME" Type="varchar2" MaxLength="35" />
+          <Property Name="EMAIL" Type="varchar2" MaxLength="50" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="PASSWORD" Type="varchar2" MaxLength="64" />
+          <Property Name="ABOUTME" Type="varchar2" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="VALID_LOGIN">
+          <Key>
+            <PropertyRef Name="SESSION_ID" />
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="LOGIN_DATE" />
+          </Key>
+          <Property Name="SESSION_ID" Type="number" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="USER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="LOGIN_DATE" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WALLET">
+          <Key>
+            <PropertyRef Name="WALLET_ID" />
+          </Key>
+          <Property Name="WALLET_ID" Type="number" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="COIN_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="COIN_ADDRESS" Type="varchar2" MaxLength="35" />
+          <Property Name="BALANCE" Type="number" Precision="12" Scale="2" />
+        </EntityType>
+        <EntityType Name="WALLET_LIST">
+          <Key>
+            <PropertyRef Name="WALLET_ID" />
+          </Key>
+          <Property Name="WALLET_ID" Type="number" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'DMORIARTY.AUTHOR_POST_INTERACTIONS' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="AUTHOR_POST_INTERACTIONS">
+          <Property Name="COIN_NAME" Type="varchar2" MaxLength="30" />
+          <Property Name="AUTHOR" Type="varchar2" MaxLength="35" />
+          <Property Name="POST_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="POST_MESSAGE" Type="varchar2" MaxLength="250" />
+          <Property Name="PERSON_THAT_INTERACTED_POST" Type="varchar2" MaxLength="35" />
+          <Property Name="INTERACTION" Type="varchar2" MaxLength="259" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'DMORIARTY.AUTHOR_POST_LIKES' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="AUTHOR_POST_LIKES">
+          <Property Name="AUTHOR" Type="varchar2" MaxLength="35" />
+          <Property Name="POST_MESSAGE" Type="varchar2" MaxLength="250" />
+          <Property Name="PERSON_THAT_LIKED_POST" Type="varchar2" MaxLength="35" />
+          <Property Name="NOTIFICATION_TYPE" Type="varchar2" MaxLength="15" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DMORIARTY.COINS_FOLLOWED_PRICES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="COINS_FOLLOWED_PRICES">
+          <Key>
+            <PropertyRef Name="COIN_ID" />
+          </Key>
+          <Property Name="COIN_ID" Type="number" Precision="8" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="COIN_NAME" Type="varchar2" MaxLength="30" />
+          <Property Name="COIN_VALUE" Type="number" Precision="12" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DMORIARTY.FOLLOWING_POSTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FOLLOWING_POSTS">
+          <Key>
+            <PropertyRef Name="LOGGED_IN_USER" />
+            <PropertyRef Name="FOLLOWED_USER" />
+            <PropertyRef Name="POST" />
+          </Key>
+          <Property Name="LOGGED_IN_USER" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="FOLLOWED_USER" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar2" MaxLength="25" />
+          <Property Name="POST" Type="varchar2" MaxLength="250" Nullable="false" />
+          <Property Name="COIN_NAME" Type="varchar2" MaxLength="30" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DMORIARTY.USER_COMMENT_LIKES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="USER_COMMENT_LIKES">
+          <Key>
+            <PropertyRef Name="COMMENT_ID" />
+            <PropertyRef Name="COMMENT" />
+          </Key>
+          <Property Name="COMMENT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="varchar2" MaxLength="35" />
+          <Property Name="COMMENT" Type="varchar2" MaxLength="250" Nullable="false" />
+          <Property Name="PERSON_WHO_LIKED" Type="varchar2" MaxLength="35" />
+          <Property Name="TYPE" Type="varchar2" MaxLength="8" />
+        </EntityType>
+        <Association Name="FK_COIN">
+          <End Role="COIN" Type="Self.COIN" Multiplicity="1" />
+          <End Role="COIN_VALUE" Type="Self.COIN_VALUE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COIN">
+              <PropertyRef Name="COIN_ID" />
+            </Principal>
+            <Dependent Role="COIN_VALUE">
+              <PropertyRef Name="COIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COIN_FOLLOWED">
+          <End Role="COIN" Type="Self.COIN" Multiplicity="1" />
+          <End Role="COIN_FOLLOW" Type="Self.COIN_FOLLOW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COIN">
+              <PropertyRef Name="COIN_ID" />
+            </Principal>
+            <Dependent Role="COIN_FOLLOW">
+              <PropertyRef Name="COIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COIN_POST">
+          <End Role="COIN" Type="Self.COIN" Multiplicity="1" />
+          <End Role="POST" Type="Self.POST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COIN">
+              <PropertyRef Name="COIN_ID" />
+            </Principal>
+            <Dependent Role="POST">
+              <PropertyRef Name="COIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FOLLOWED">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="1" />
+          <End Role="FOLLOWER" Type="Self.FOLLOWER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="FOLLOWER">
+              <PropertyRef Name="FOLLOWED_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FOLLOWER">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="1" />
+          <End Role="FOLLOWER" Type="Self.FOLLOWER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="FOLLOWER">
+              <PropertyRef Name="FOLLOWER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVALID_LOGIN_USER">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="1" />
+          <End Role="INVALID_LOGIN" Type="Self.INVALID_LOGIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="INVALID_LOGIN">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIKED_COMMENT">
+          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="0..1" />
+          <End Role="LIKE_DISLIKE" Type="Self.LIKE_DISLIKE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMENT">
+              <PropertyRef Name="COMMENT_ID" />
+            </Principal>
+            <Dependent Role="LIKE_DISLIKE">
+              <PropertyRef Name="COMMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIKED_OBJECT_TYPE_ID">
+          <End Role="LIKED_OBJECT_TYPE" Type="Self.LIKED_OBJECT_TYPE" Multiplicity="0..1" />
+          <End Role="LIKE_DISLIKE" Type="Self.LIKE_DISLIKE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LIKED_OBJECT_TYPE">
+              <PropertyRef Name="LIKED_OBJECT_TYPE_ID" />
+            </Principal>
+            <Dependent Role="LIKE_DISLIKE">
+              <PropertyRef Name="LIKED_OBJECT_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIKED_POST">
+          <End Role="POST" Type="Self.POST" Multiplicity="0..1" />
+          <End Role="LIKE_DISLIKE" Type="Self.LIKE_DISLIKE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POST">
+              <PropertyRef Name="POST_ID" />
+            </Principal>
+            <Dependent Role="LIKE_DISLIKE">
+              <PropertyRef Name="POST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIKED_USER">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="0..1" />
+          <End Role="LIKE_DISLIKE" Type="Self.LIKE_DISLIKE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="LIKE_DISLIKE">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTIFICATION_COIN">
+          <End Role="COIN" Type="Self.COIN" Multiplicity="0..1" />
+          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COIN">
+              <PropertyRef Name="COIN_ID" />
+            </Principal>
+            <Dependent Role="NOTIFICATION">
+              <PropertyRef Name="COIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTIFICATION_COMMENT">
+          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="0..1" />
+          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMENT">
+              <PropertyRef Name="COMMENT_ID" />
+            </Principal>
+            <Dependent Role="NOTIFICATION">
+              <PropertyRef Name="COMMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTIFICATION_LIKE">
+          <End Role="LIKE_DISLIKE" Type="Self.LIKE_DISLIKE" Multiplicity="0..1" />
+          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LIKE_DISLIKE">
+              <PropertyRef Name="LIKE_ID" />
+            </Principal>
+            <Dependent Role="NOTIFICATION">
+              <PropertyRef Name="LIKE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTIFICATION_POST">
+          <End Role="POST" Type="Self.POST" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POST">
+              <PropertyRef Name="POST_ID" />
+            </Principal>
+            <Dependent Role="NOTIFICATION">
+              <PropertyRef Name="POST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTIFICATION_TYPE">
+          <End Role="NOTIFICATION_TYPE" Type="Self.NOTIFICATION_TYPE" Multiplicity="1" />
+          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NOTIFICATION_TYPE">
+              <PropertyRef Name="NOTIFICATION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="NOTIFICATION">
+              <PropertyRef Name="NOTIFICATION_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTIFICATION_USER">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="0..1" />
+          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="NOTIFICATION">
+              <PropertyRef Name="FOLLOWER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTIFIED">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="1" />
+          <End Role="NOTIFIED_USER" Type="Self.NOTIFIED_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="NOTIFIED_USER">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_POST_COMMENT">
+          <End Role="POST" Type="Self.POST" Multiplicity="1" />
+          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POST">
+              <PropertyRef Name="POST_ID" />
+            </Principal>
+            <Dependent Role="COMMENT">
+              <PropertyRef Name="POST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PR_COIN_USR">
+          <End Role="COIN_FOLLOW" Type="Self.COIN_FOLLOW" Multiplicity="1" />
+          <End Role="PRICE_ALERT" Type="Self.PRICE_ALERT" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="COIN_FOLLOW">
+              <PropertyRef Name="USER_ID" />
+              <PropertyRef Name="COIN_ID" />
+            </Principal>
+            <Dependent Role="PRICE_ALERT">
+              <PropertyRef Name="USER_ID" />
+              <PropertyRef Name="COIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_COMMENT">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="1" />
+          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="COMMENT">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_FOLLOW">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="1" />
+          <End Role="COIN_FOLLOW" Type="Self.COIN_FOLLOW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="COIN_FOLLOW">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_NOTIFICATION">
+          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="1" />
+          <End Role="NOTIFIED_USER" Type="Self.NOTIFIED_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NOTIFICATION">
+              <PropertyRef Name="NOTIFICATION_ID" />
+            </Principal>
+            <Dependent Role="NOTIFIED_USER">
+              <PropertyRef Name="NOTIFIED_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_POST">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="1" />
+          <End Role="POST" Type="Self.POST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="POST">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VALID_LOGIN_USER">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="1" />
+          <End Role="VALID_LOGIN" Type="Self.VALID_LOGIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="VALID_LOGIN">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WALLET_COIN">
+          <End Role="COIN" Type="Self.COIN" Multiplicity="0..1" />
+          <End Role="WALLET" Type="Self.WALLET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COIN">
+              <PropertyRef Name="COIN_ID" />
+            </Principal>
+            <Dependent Role="WALLET">
+              <PropertyRef Name="COIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WALLET_L_USER">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="0..1" />
+          <End Role="WALLET_LIST" Type="Self.WALLET_LIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="WALLET_LIST">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WALLET_L_WALLET">
+          <End Role="WALLET" Type="Self.WALLET" Multiplicity="1" />
+          <End Role="WALLET_LIST" Type="Self.WALLET_LIST" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="WALLET">
+              <PropertyRef Name="WALLET_ID" />
+            </Principal>
+            <Dependent Role="WALLET_LIST">
+              <PropertyRef Name="WALLET_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="COIN_VALUE_ON_DAY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="DMORIARTY" ReturnType="number">
+          <Parameter Name="V_COIN_ID" Type="varchar2" Mode="In" />
+          <Parameter Name="V_NUM_DAYS" Type="number" Mode="In" />
+        </Function>
+        <Function Name="ENCRYPT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="DMORIARTY" ReturnType="raw">
+          <Parameter Name="PASSWORD" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="ENCRYPTPASSWORD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="DMORIARTY" ReturnType="raw">
+          <Parameter Name="USERPASSWORD" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="GET_COIN_VALUE_DIFFERENCE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="DMORIARTY" ReturnType="number">
+          <Parameter Name="COIN_ID" Type="number" Mode="In" />
+          <Parameter Name="V_DAYS" Type="number" Mode="In" />
+        </Function>
+        <Function Name="LOGINUSER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DMORIARTY">
+          <Parameter Name="V_USER_ID" Type="number" Mode="In" />
+          <Parameter Name="V_USERNAME" Type="varchar2" Mode="In" />
+          <Parameter Name="V_PASSWORD" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="PASSWORDVERIFICATION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="DMORIARTY" ReturnType="number">
+          <Parameter Name="V_USERNAME" Type="varchar2" Mode="In" />
+          <Parameter Name="PASSWORD" Type="varchar2" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="COIN" EntityType="Self.COIN" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="COIN_FOLLOW" EntityType="Self.COIN_FOLLOW" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="COIN_VALUE" EntityType="Self.COIN_VALUE" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="COMMENT" EntityType="Self.COMMENT" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="FOLLOWER" EntityType="Self.FOLLOWER" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="INVALID_LOGIN" EntityType="Self.INVALID_LOGIN" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="LIKE_DISLIKE" EntityType="Self.LIKE_DISLIKE" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="LIKED_OBJECT_TYPE" EntityType="Self.LIKED_OBJECT_TYPE" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="NOTIFICATION" EntityType="Self.NOTIFICATION" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="NOTIFICATION_TYPE" EntityType="Self.NOTIFICATION_TYPE" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="NOTIFIED_USER" EntityType="Self.NOTIFIED_USER" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="POST" EntityType="Self.POST" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="PRICE_ALERT" EntityType="Self.PRICE_ALERT" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="USERT" EntityType="Self.USERT" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="VALID_LOGIN" EntityType="Self.VALID_LOGIN" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="WALLET" EntityType="Self.WALLET" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="WALLET_LIST" EntityType="Self.WALLET_LIST" Schema="DMORIARTY" store:Type="Tables" />
+          <EntitySet Name="COINS_FOLLOWED_PRICES" EntityType="Self.COINS_FOLLOWED_PRICES" store:Type="Views" store:Schema="DMORIARTY">
+            <DefiningQuery>SELECT 
+"COINS_FOLLOWED_PRICES"."COIN_ID" AS "COIN_ID", 
+"COINS_FOLLOWED_PRICES"."COIN_NAME" AS "COIN_NAME", 
+"COINS_FOLLOWED_PRICES"."COIN_VALUE" AS "COIN_VALUE"
+FROM "DMORIARTY"."COINS_FOLLOWED_PRICES" "COINS_FOLLOWED_PRICES"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FOLLOWING_POSTS" EntityType="Self.FOLLOWING_POSTS" store:Type="Views" store:Schema="DMORIARTY">
+            <DefiningQuery>SELECT 
+"FOLLOWING_POSTS"."LOGGED_IN_USER" AS "LOGGED_IN_USER", 
+"FOLLOWING_POSTS"."FOLLOWED_USER" AS "FOLLOWED_USER", 
+"FOLLOWING_POSTS"."USERNAME" AS "USERNAME", 
+"FOLLOWING_POSTS"."POST" AS "POST", 
+"FOLLOWING_POSTS"."COIN_NAME" AS "COIN_NAME"
+FROM "DMORIARTY"."FOLLOWING_POSTS" "FOLLOWING_POSTS"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="USER_COMMENT_LIKES" EntityType="Self.USER_COMMENT_LIKES" store:Type="Views" store:Schema="DMORIARTY">
+            <DefiningQuery>SELECT 
+"USER_COMMENT_LIKES"."COMMENT_ID" AS "COMMENT_ID", 
+"USER_COMMENT_LIKES"."FIRSTNAME" AS "FIRSTNAME", 
+"USER_COMMENT_LIKES"."COMMENT" AS "COMMENT", 
+"USER_COMMENT_LIKES"."PERSON_WHO_LIKED" AS "PERSON_WHO_LIKED", 
+"USER_COMMENT_LIKES"."TYPE" AS "TYPE"
+FROM "DMORIARTY"."USER_COMMENT_LIKES" "USER_COMMENT_LIKES"</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_COIN" Association="Self.FK_COIN">
+            <End Role="COIN" EntitySet="COIN" />
+            <End Role="COIN_VALUE" EntitySet="COIN_VALUE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COIN_FOLLOWED" Association="Self.FK_COIN_FOLLOWED">
+            <End Role="COIN" EntitySet="COIN" />
+            <End Role="COIN_FOLLOW" EntitySet="COIN_FOLLOW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COIN_POST" Association="Self.FK_COIN_POST">
+            <End Role="COIN" EntitySet="COIN" />
+            <End Role="POST" EntitySet="POST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FOLLOWED" Association="Self.FK_FOLLOWED">
+            <End Role="USERT" EntitySet="USERT" />
+            <End Role="FOLLOWER" EntitySet="FOLLOWER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FOLLOWER" Association="Self.FK_FOLLOWER">
+            <End Role="USERT" EntitySet="USERT" />
+            <End Role="FOLLOWER" EntitySet="FOLLOWER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVALID_LOGIN_USER" Association="Self.FK_INVALID_LOGIN_USER">
+            <End Role="USERT" EntitySet="USERT" />
+            <End Role="INVALID_LOGIN" EntitySet="INVALID_LOGIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIKED_COMMENT" Association="Self.FK_LIKED_COMMENT">
+            <End Role="COMMENT" EntitySet="COMMENT" />
+            <End Role="LIKE_DISLIKE" EntitySet="LIKE_DISLIKE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIKED_OBJECT_TYPE_ID" Association="Self.FK_LIKED_OBJECT_TYPE_ID">
+            <End Role="LIKED_OBJECT_TYPE" EntitySet="LIKED_OBJECT_TYPE" />
+            <End Role="LIKE_DISLIKE" EntitySet="LIKE_DISLIKE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIKED_POST" Association="Self.FK_LIKED_POST">
+            <End Role="POST" EntitySet="POST" />
+            <End Role="LIKE_DISLIKE" EntitySet="LIKE_DISLIKE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIKED_USER" Association="Self.FK_LIKED_USER">
+            <End Role="USERT" EntitySet="USERT" />
+            <End Role="LIKE_DISLIKE" EntitySet="LIKE_DISLIKE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTIFICATION_COIN" Association="Self.FK_NOTIFICATION_COIN">
+            <End Role="COIN" EntitySet="COIN" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTIFICATION_COMMENT" Association="Self.FK_NOTIFICATION_COMMENT">
+            <End Role="COMMENT" EntitySet="COMMENT" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTIFICATION_LIKE" Association="Self.FK_NOTIFICATION_LIKE">
+            <End Role="LIKE_DISLIKE" EntitySet="LIKE_DISLIKE" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTIFICATION_POST" Association="Self.FK_NOTIFICATION_POST">
+            <End Role="POST" EntitySet="POST" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTIFICATION_TYPE" Association="Self.FK_NOTIFICATION_TYPE">
+            <End Role="NOTIFICATION_TYPE" EntitySet="NOTIFICATION_TYPE" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTIFICATION_USER" Association="Self.FK_NOTIFICATION_USER">
+            <End Role="USERT" EntitySet="USERT" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTIFIED" Association="Self.FK_NOTIFIED">
+            <End Role="USERT" EntitySet="USERT" />
+            <End Role="NOTIFIED_USER" EntitySet="NOTIFIED_USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_POST_COMMENT" Association="Self.FK_POST_COMMENT">
+            <End Role="POST" EntitySet="POST" />
+            <End Role="COMMENT" EntitySet="COMMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PR_COIN_USR" Association="Self.FK_PR_COIN_USR">
+            <End Role="COIN_FOLLOW" EntitySet="COIN_FOLLOW" />
+            <End Role="PRICE_ALERT" EntitySet="PRICE_ALERT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_COMMENT" Association="Self.FK_USER_COMMENT">
+            <End Role="USERT" EntitySet="USERT" />
+            <End Role="COMMENT" EntitySet="COMMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_FOLLOW" Association="Self.FK_USER_FOLLOW">
+            <End Role="USERT" EntitySet="USERT" />
+            <End Role="COIN_FOLLOW" EntitySet="COIN_FOLLOW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_NOTIFICATION" Association="Self.FK_USER_NOTIFICATION">
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
+            <End Role="NOTIFIED_USER" EntitySet="NOTIFIED_USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_POST" Association="Self.FK_USER_POST">
+            <End Role="USERT" EntitySet="USERT" />
+            <End Role="POST" EntitySet="POST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VALID_LOGIN_USER" Association="Self.FK_VALID_LOGIN_USER">
+            <End Role="USERT" EntitySet="USERT" />
+            <End Role="VALID_LOGIN" EntitySet="VALID_LOGIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WALLET_COIN" Association="Self.FK_WALLET_COIN">
+            <End Role="COIN" EntitySet="COIN" />
+            <End Role="WALLET" EntitySet="WALLET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WALLET_L_USER" Association="Self.FK_WALLET_L_USER">
+            <End Role="USERT" EntitySet="USERT" />
+            <End Role="WALLET_LIST" EntitySet="WALLET_LIST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WALLET_L_WALLET" Association="Self.FK_WALLET_L_WALLET">
+            <End Role="WALLET" EntitySet="WALLET" />
+            <End Role="WALLET_LIST" EntitySet="WALLET_LIST" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="COIN">
+          <Key>
+            <PropertyRef Name="COIN_ID" />
+          </Key>
+          <Property Name="COIN_ID" Type="Int32" Nullable="false" />
+          <Property Name="COIN_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="COIN_VALUE" Relationship="Self.FK_COIN" FromRole="COIN" ToRole="COIN_VALUE" />
+          <NavigationProperty Name="COIN_FOLLOW" Relationship="Self.FK_COIN_FOLLOWED" FromRole="COIN" ToRole="COIN_FOLLOW" />
+          <NavigationProperty Name="POSTs" Relationship="Self.FK_COIN_POST" FromRole="COIN" ToRole="POST" />
+          <NavigationProperty Name="NOTIFICATIONs" Relationship="Self.FK_NOTIFICATION_COIN" FromRole="COIN" ToRole="NOTIFICATION" />
+          <NavigationProperty Name="WALLETs" Relationship="Self.FK_WALLET_COIN" FromRole="COIN" ToRole="WALLET" />
+        </EntityType>
+        <EntityType Name="COIN_FOLLOW">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="COIN_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="COIN_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="COIN" Relationship="Self.FK_COIN_FOLLOWED" FromRole="COIN_FOLLOW" ToRole="COIN" />
+          <NavigationProperty Name="PRICE_ALERT" Relationship="Self.FK_PR_COIN_USR" FromRole="COIN_FOLLOW" ToRole="PRICE_ALERT" />
+          <NavigationProperty Name="USERT" Relationship="Self.FK_USER_FOLLOW" FromRole="COIN_FOLLOW" ToRole="USERT" />
+        </EntityType>
+        <EntityType Name="COIN_VALUE">
+          <Key>
+            <PropertyRef Name="COIN_ID" />
+            <PropertyRef Name="DATETIME" />
+          </Key>
+          <Property Name="COIN_ID" Type="Int32" Nullable="false" />
+          <Property Name="DATETIME" Type="DateTime" Nullable="false" />
+          <Property Name="COIN_VALUE1" Type="Decimal" Precision="12" Scale="2" />
+          <NavigationProperty Name="COIN" Relationship="Self.FK_COIN" FromRole="COIN_VALUE" ToRole="COIN" />
+        </EntityType>
+        <EntityType Name="COMMENT">
+          <Key>
+            <PropertyRef Name="COMMENT_ID" />
+          </Key>
+          <Property Name="COMMENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="POST_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="COMMENT1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATETIME" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="LIKE_DISLIKE" Relationship="Self.FK_LIKED_COMMENT" FromRole="COMMENT" ToRole="LIKE_DISLIKE" />
+          <NavigationProperty Name="NOTIFICATIONs" Relationship="Self.FK_NOTIFICATION_COMMENT" FromRole="COMMENT" ToRole="NOTIFICATION" />
+          <NavigationProperty Name="POST" Relationship="Self.FK_POST_COMMENT" FromRole="COMMENT" ToRole="POST" />
+          <NavigationProperty Name="USERT" Relationship="Self.FK_USER_COMMENT" FromRole="COMMENT" ToRole="USERT" />
+        </EntityType>
+        <EntityType Name="INVALID_LOGIN">
+          <Key>
+            <PropertyRef Name="SESSION_ID" />
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="INVAL_LOG_DATE" />
+          </Key>
+          <Property Name="SESSION_ID" Type="Int64" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="INVAL_LOG_DATE" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="USERT" Relationship="Self.FK_INVALID_LOGIN_USER" FromRole="INVALID_LOGIN" ToRole="USERT" />
+        </EntityType>
+        <EntityType Name="LIKE_DISLIKE">
+          <Key>
+            <PropertyRef Name="LIKE_ID" />
+          </Key>
+          <Property Name="LIKE_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" />
+          <Property Name="LIKED_OBJECT_TYPE_ID" Type="Int32" />
+          <Property Name="COMMENT_ID" Type="Int32" />
+          <Property Name="POST_ID" Type="Int32" />
+          <Property Name="TYPE" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="COMMENT" Relationship="Self.FK_LIKED_COMMENT" FromRole="LIKE_DISLIKE" ToRole="COMMENT" />
+          <NavigationProperty Name="LIKED_OBJECT_TYPE" Relationship="Self.FK_LIKED_OBJECT_TYPE_ID" FromRole="LIKE_DISLIKE" ToRole="LIKED_OBJECT_TYPE" />
+          <NavigationProperty Name="POST" Relationship="Self.FK_LIKED_POST" FromRole="LIKE_DISLIKE" ToRole="POST" />
+          <NavigationProperty Name="USERT" Relationship="Self.FK_LIKED_USER" FromRole="LIKE_DISLIKE" ToRole="USERT" />
+          <NavigationProperty Name="NOTIFICATIONs" Relationship="Self.FK_NOTIFICATION_LIKE" FromRole="LIKE_DISLIKE" ToRole="NOTIFICATION" />
+        </EntityType>
+        <EntityType Name="LIKED_OBJECT_TYPE">
+          <Key>
+            <PropertyRef Name="LIKED_OBJECT_TYPE_ID" />
+          </Key>
+          <Property Name="LIKED_OBJECT_TYPE_ID" Type="Int32" Nullable="false" />
+          <Property Name="LIKED_OBJECT_TYPE1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LIKE_DISLIKE" Relationship="Self.FK_LIKED_OBJECT_TYPE_ID" FromRole="LIKED_OBJECT_TYPE" ToRole="LIKE_DISLIKE" />
+        </EntityType>
+        <EntityType Name="NOTIFICATION">
+          <Key>
+            <PropertyRef Name="NOTIFICATION_ID" />
+          </Key>
+          <Property Name="NOTIFICATION_ID" Type="Int32" Nullable="false" />
+          <Property Name="NOTIFICATION_TYPE_ID" Type="Int32" Nullable="false" />
+          <Property Name="COIN_ID" Type="Int32" />
+          <Property Name="COMMENT_ID" Type="Int32" />
+          <Property Name="LIKE_ID" Type="Int32" />
+          <Property Name="FOLLOWER_ID" Type="Int32" />
+          <Property Name="POST_ID" Type="Int32" />
+          <Property Name="DATETIME" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="COIN" Relationship="Self.FK_NOTIFICATION_COIN" FromRole="NOTIFICATION" ToRole="COIN" />
+          <NavigationProperty Name="COMMENT" Relationship="Self.FK_NOTIFICATION_COMMENT" FromRole="NOTIFICATION" ToRole="COMMENT" />
+          <NavigationProperty Name="LIKE_DISLIKE" Relationship="Self.FK_NOTIFICATION_LIKE" FromRole="NOTIFICATION" ToRole="LIKE_DISLIKE" />
+          <NavigationProperty Name="POST" Relationship="Self.FK_NOTIFICATION_POST" FromRole="NOTIFICATION" ToRole="POST" />
+          <NavigationProperty Name="NOTIFICATION_TYPE" Relationship="Self.FK_NOTIFICATION_TYPE" FromRole="NOTIFICATION" ToRole="NOTIFICATION_TYPE" />
+          <NavigationProperty Name="USERT" Relationship="Self.FK_NOTIFICATION_USER" FromRole="NOTIFICATION" ToRole="USERT" />
+          <NavigationProperty Name="NOTIFIED_USER" Relationship="Self.FK_USER_NOTIFICATION" FromRole="NOTIFICATION" ToRole="NOTIFIED_USER" />
+          <NavigationProperty Name="NOTIFIED_USER1" Relationship="Model.FK_USER_NOTIFICATION1" FromRole="NOTIFICATION" ToRole="NOTIFIED_USER" />
+        </EntityType>
+        <EntityType Name="NOTIFICATION_TYPE">
+          <Key>
+            <PropertyRef Name="NOTIFICATION_TYPE_ID" />
+          </Key>
+          <Property Name="NOTIFICATION_TYPE_ID" Type="Int32" Nullable="false" />
+          <Property Name="NOTIFICATION_TYPE1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="NOTIFICATIONs" Relationship="Self.FK_NOTIFICATION_TYPE" FromRole="NOTIFICATION_TYPE" ToRole="NOTIFICATION" />
+        </EntityType>
+        <EntityType Name="NOTIFIED_USER">
+          <Key>
+            <PropertyRef Name="NOTIFIED_ID" />
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="NOTIFIED_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="NOTIFICATION_SEEN" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="NOTIFICATION" Relationship="Self.FK_USER_NOTIFICATION" FromRole="NOTIFIED_USER" ToRole="NOTIFICATION" />
+          <NavigationProperty Name="USERT" Relationship="Self.FK_NOTIFIED" FromRole="NOTIFIED_USER" ToRole="USERT" />
+          <NavigationProperty Name="NOTIFICATION1" Relationship="Model.FK_USER_NOTIFICATION1" FromRole="NOTIFIED_USER" ToRole="NOTIFICATION" />
+          <NavigationProperty Name="USERT1" Relationship="Model.FK_NOTIFIED1" FromRole="NOTIFIED_USER" ToRole="USERT" />
+        </EntityType>
+        <EntityType Name="POST">
+          <Key>
+            <PropertyRef Name="POST_ID" />
+          </Key>
+          <Property Name="POST_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="COIN_ID" Type="Int32" Nullable="false" />
+          <Property Name="MESSAGE" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATETIME" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="COIN" Relationship="Self.FK_COIN_POST" FromRole="POST" ToRole="COIN" />
+          <NavigationProperty Name="COMMENTs" Relationship="Self.FK_POST_COMMENT" FromRole="POST" ToRole="COMMENT" />
+          <NavigationProperty Name="LIKE_DISLIKE" Relationship="Self.FK_LIKED_POST" FromRole="POST" ToRole="LIKE_DISLIKE" />
+          <NavigationProperty Name="NOTIFICATIONs" Relationship="Self.FK_NOTIFICATION_POST" FromRole="POST" ToRole="NOTIFICATION" />
+          <NavigationProperty Name="USERT" Relationship="Self.FK_USER_POST" FromRole="POST" ToRole="USERT" />
+        </EntityType>
+        <EntityType Name="PRICE_ALERT">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="COIN_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="COIN_ID" Type="Int32" Nullable="false" />
+          <Property Name="PRICE" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="IS_GREATER_THAN" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="COIN_FOLLOW" Relationship="Self.FK_PR_COIN_USR" FromRole="PRICE_ALERT" ToRole="COIN_FOLLOW" />
+        </EntityType>
+        <EntityType Name="USERT">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="USERNAME" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="SURNAME" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" />
+          <Property Name="PASSWORD" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="ABOUTME" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="COIN_FOLLOW" Relationship="Self.FK_USER_FOLLOW" FromRole="USERT" ToRole="COIN_FOLLOW" />
+          <NavigationProperty Name="COMMENTs" Relationship="Self.FK_USER_COMMENT" FromRole="USERT" ToRole="COMMENT" />
+          <NavigationProperty Name="INVALID_LOGIN" Relationship="Self.FK_INVALID_LOGIN_USER" FromRole="USERT" ToRole="INVALID_LOGIN" />
+          <NavigationProperty Name="LIKE_DISLIKE" Relationship="Self.FK_LIKED_USER" FromRole="USERT" ToRole="LIKE_DISLIKE" />
+          <NavigationProperty Name="NOTIFICATIONs" Relationship="Self.FK_NOTIFICATION_USER" FromRole="USERT" ToRole="NOTIFICATION" />
+          <NavigationProperty Name="NOTIFIED_USER" Relationship="Self.FK_NOTIFIED" FromRole="USERT" ToRole="NOTIFIED_USER" />
+          <NavigationProperty Name="POSTs" Relationship="Self.FK_USER_POST" FromRole="USERT" ToRole="POST" />
+          <NavigationProperty Name="VALID_LOGIN" Relationship="Self.FK_VALID_LOGIN_USER" FromRole="USERT" ToRole="VALID_LOGIN" />
+          <NavigationProperty Name="WALLET_LIST" Relationship="Self.FK_WALLET_L_USER" FromRole="USERT" ToRole="WALLET_LIST" />
+          <NavigationProperty Name="USERT1" Relationship="Self.FOLLOWER" FromRole="USERT" ToRole="USERT1" />
+          <NavigationProperty Name="USERTs" Relationship="Self.FOLLOWER" FromRole="USERT1" ToRole="USERT" />
+          <NavigationProperty Name="NOTIFIED_USER1" Relationship="Model.FK_NOTIFIED1" FromRole="USERT" ToRole="NOTIFIED_USER" />
+        </EntityType>
+        <EntityType Name="VALID_LOGIN">
+          <Key>
+            <PropertyRef Name="SESSION_ID" />
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="LOGIN_DATE" />
+          </Key>
+          <Property Name="SESSION_ID" Type="Int64" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="LOGIN_DATE" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="USERT" Relationship="Self.FK_VALID_LOGIN_USER" FromRole="VALID_LOGIN" ToRole="USERT" />
+        </EntityType>
+        <EntityType Name="WALLET">
+          <Key>
+            <PropertyRef Name="WALLET_ID" />
+          </Key>
+          <Property Name="WALLET_ID" Type="Int16" Nullable="false" />
+          <Property Name="COIN_ID" Type="Int32" />
+          <Property Name="COIN_ADDRESS" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="BALANCE" Type="Decimal" Precision="12" Scale="2" />
+          <NavigationProperty Name="COIN" Relationship="Self.FK_WALLET_COIN" FromRole="WALLET" ToRole="COIN" />
+          <NavigationProperty Name="WALLET_LIST" Relationship="Self.FK_WALLET_L_WALLET" FromRole="WALLET" ToRole="WALLET_LIST" />
+        </EntityType>
+        <EntityType Name="WALLET_LIST">
+          <Key>
+            <PropertyRef Name="WALLET_ID" />
+          </Key>
+          <Property Name="WALLET_ID" Type="Int16" Nullable="false" />
+          <Property Name="USER_ID" Type="Int32" />
+          <NavigationProperty Name="USERT" Relationship="Self.FK_WALLET_L_USER" FromRole="WALLET_LIST" ToRole="USERT" />
+          <NavigationProperty Name="WALLET" Relationship="Self.FK_WALLET_L_WALLET" FromRole="WALLET_LIST" ToRole="WALLET" />
+        </EntityType>
+        <EntityType Name="COINS_FOLLOWED_PRICES">
+          <Key>
+            <PropertyRef Name="COIN_ID" />
+          </Key>
+          <Property Name="COIN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COIN_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="COIN_VALUE" Type="Decimal" Precision="12" Scale="2" />
+        </EntityType>
+        <EntityType Name="FOLLOWING_POSTS">
+          <Key>
+            <PropertyRef Name="LOGGED_IN_USER" />
+            <PropertyRef Name="FOLLOWED_USER" />
+            <PropertyRef Name="POST" />
+          </Key>
+          <Property Name="LOGGED_IN_USER" Type="Int32" Nullable="false" />
+          <Property Name="FOLLOWED_USER" Type="Int32" Nullable="false" />
+          <Property Name="USERNAME" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="POST" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COIN_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="USER_COMMENT_LIKES">
+          <Key>
+            <PropertyRef Name="COMMENT_ID" />
+            <PropertyRef Name="COMMENT" />
+          </Key>
+          <Property Name="COMMENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="COMMENT" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PERSON_WHO_LIKED" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="TYPE" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_COIN">
+          <End Role="COIN" Type="Self.COIN" Multiplicity="1" />
+          <End Role="COIN_VALUE" Type="Self.COIN_VALUE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COIN">
+              <PropertyRef Name="COIN_ID" />
+            </Principal>
+            <Dependent Role="COIN_VALUE">
+              <PropertyRef Name="COIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COIN_FOLLOWED">
+          <End Role="COIN" Type="Self.COIN" Multiplicity="1" />
+          <End Role="COIN_FOLLOW" Type="Self.COIN_FOLLOW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COIN">
+              <PropertyRef Name="COIN_ID" />
+            </Principal>
+            <Dependent Role="COIN_FOLLOW">
+              <PropertyRef Name="COIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COIN_POST">
+          <End Role="COIN" Type="Self.COIN" Multiplicity="1" />
+          <End Role="POST" Type="Self.POST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COIN">
+              <PropertyRef Name="COIN_ID" />
+            </Principal>
+            <Dependent Role="POST">
+              <PropertyRef Name="COIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTIFICATION_COIN">
+          <End Role="COIN" Type="Self.COIN" Multiplicity="0..1" />
+          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COIN">
+              <PropertyRef Name="COIN_ID" />
+            </Principal>
+            <Dependent Role="NOTIFICATION">
+              <PropertyRef Name="COIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WALLET_COIN">
+          <End Role="COIN" Type="Self.COIN" Multiplicity="0..1" />
+          <End Role="WALLET" Type="Self.WALLET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COIN">
+              <PropertyRef Name="COIN_ID" />
+            </Principal>
+            <Dependent Role="WALLET">
+              <PropertyRef Name="COIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PR_COIN_USR">
+          <End Role="COIN_FOLLOW" Type="Self.COIN_FOLLOW" Multiplicity="1" />
+          <End Role="PRICE_ALERT" Type="Self.PRICE_ALERT" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="COIN_FOLLOW">
+              <PropertyRef Name="USER_ID" />
+              <PropertyRef Name="COIN_ID" />
+            </Principal>
+            <Dependent Role="PRICE_ALERT">
+              <PropertyRef Name="USER_ID" />
+              <PropertyRef Name="COIN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_FOLLOW">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="1" />
+          <End Role="COIN_FOLLOW" Type="Self.COIN_FOLLOW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="COIN_FOLLOW">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIKED_COMMENT">
+          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="0..1" />
+          <End Role="LIKE_DISLIKE" Type="Self.LIKE_DISLIKE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMENT">
+              <PropertyRef Name="COMMENT_ID" />
+            </Principal>
+            <Dependent Role="LIKE_DISLIKE">
+              <PropertyRef Name="COMMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTIFICATION_COMMENT">
+          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="0..1" />
+          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMENT">
+              <PropertyRef Name="COMMENT_ID" />
+            </Principal>
+            <Dependent Role="NOTIFICATION">
+              <PropertyRef Name="COMMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_POST_COMMENT">
+          <End Role="POST" Type="Self.POST" Multiplicity="1" />
+          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POST">
+              <PropertyRef Name="POST_ID" />
+            </Principal>
+            <Dependent Role="COMMENT">
+              <PropertyRef Name="POST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_COMMENT">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="1" />
+          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="COMMENT">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVALID_LOGIN_USER">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="1" />
+          <End Role="INVALID_LOGIN" Type="Self.INVALID_LOGIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="INVALID_LOGIN">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIKED_OBJECT_TYPE_ID">
+          <End Role="LIKED_OBJECT_TYPE" Type="Self.LIKED_OBJECT_TYPE" Multiplicity="0..1" />
+          <End Role="LIKE_DISLIKE" Type="Self.LIKE_DISLIKE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LIKED_OBJECT_TYPE">
+              <PropertyRef Name="LIKED_OBJECT_TYPE_ID" />
+            </Principal>
+            <Dependent Role="LIKE_DISLIKE">
+              <PropertyRef Name="LIKED_OBJECT_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIKED_POST">
+          <End Role="POST" Type="Self.POST" Multiplicity="0..1" />
+          <End Role="LIKE_DISLIKE" Type="Self.LIKE_DISLIKE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POST">
+              <PropertyRef Name="POST_ID" />
+            </Principal>
+            <Dependent Role="LIKE_DISLIKE">
+              <PropertyRef Name="POST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIKED_USER">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="0..1" />
+          <End Role="LIKE_DISLIKE" Type="Self.LIKE_DISLIKE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="LIKE_DISLIKE">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTIFICATION_LIKE">
+          <End Role="LIKE_DISLIKE" Type="Self.LIKE_DISLIKE" Multiplicity="0..1" />
+          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LIKE_DISLIKE">
+              <PropertyRef Name="LIKE_ID" />
+            </Principal>
+            <Dependent Role="NOTIFICATION">
+              <PropertyRef Name="LIKE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTIFICATION_POST">
+          <End Role="POST" Type="Self.POST" Multiplicity="0..1" />
+          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POST">
+              <PropertyRef Name="POST_ID" />
+            </Principal>
+            <Dependent Role="NOTIFICATION">
+              <PropertyRef Name="POST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTIFICATION_TYPE">
+          <End Role="NOTIFICATION_TYPE" Type="Self.NOTIFICATION_TYPE" Multiplicity="1" />
+          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NOTIFICATION_TYPE">
+              <PropertyRef Name="NOTIFICATION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="NOTIFICATION">
+              <PropertyRef Name="NOTIFICATION_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTIFICATION_USER">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="0..1" />
+          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="NOTIFICATION">
+              <PropertyRef Name="FOLLOWER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_NOTIFICATION">
+          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="1" />
+          <End Role="NOTIFIED_USER" Type="Self.NOTIFIED_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NOTIFICATION">
+              <PropertyRef Name="NOTIFICATION_ID" />
+            </Principal>
+            <Dependent Role="NOTIFIED_USER">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTIFIED">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="1" />
+          <End Role="NOTIFIED_USER" Type="Self.NOTIFIED_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="NOTIFIED_USER">
+              <PropertyRef Name="NOTIFIED_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_POST">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="1" />
+          <End Role="POST" Type="Self.POST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="POST">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VALID_LOGIN_USER">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="1" />
+          <End Role="VALID_LOGIN" Type="Self.VALID_LOGIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="VALID_LOGIN">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WALLET_L_USER">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="0..1" />
+          <End Role="WALLET_LIST" Type="Self.WALLET_LIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="WALLET_LIST">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WALLET_L_WALLET">
+          <End Role="WALLET" Type="Self.WALLET" Multiplicity="1" />
+          <End Role="WALLET_LIST" Type="Self.WALLET_LIST" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="WALLET">
+              <PropertyRef Name="WALLET_ID" />
+            </Principal>
+            <Dependent Role="WALLET_LIST">
+              <PropertyRef Name="WALLET_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FOLLOWER">
+          <End Role="USERT" Type="Self.USERT" Multiplicity="*" />
+          <End Role="USERT1" Type="Self.USERT" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="CoinWatchEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="COINs" EntityType="Self.COIN" />
+          <EntitySet Name="COIN_FOLLOW" EntityType="Self.COIN_FOLLOW" />
+          <EntitySet Name="COIN_VALUE" EntityType="Self.COIN_VALUE" />
+          <EntitySet Name="COMMENTs" EntityType="Self.COMMENT" />
+          <EntitySet Name="INVALID_LOGIN" EntityType="Self.INVALID_LOGIN" />
+          <EntitySet Name="LIKE_DISLIKE" EntityType="Self.LIKE_DISLIKE" />
+          <EntitySet Name="LIKED_OBJECT_TYPE" EntityType="Self.LIKED_OBJECT_TYPE" />
+          <EntitySet Name="NOTIFICATIONs" EntityType="Self.NOTIFICATION" />
+          <EntitySet Name="NOTIFICATION_TYPE" EntityType="Self.NOTIFICATION_TYPE" />
+          <EntitySet Name="NOTIFIED_USER" EntityType="Self.NOTIFIED_USER" />
+          <EntitySet Name="POSTs" EntityType="Self.POST" />
+          <EntitySet Name="PRICE_ALERT" EntityType="Self.PRICE_ALERT" />
+          <EntitySet Name="USERTs" EntityType="Self.USERT" />
+          <EntitySet Name="VALID_LOGIN" EntityType="Self.VALID_LOGIN" />
+          <EntitySet Name="WALLETs" EntityType="Self.WALLET" />
+          <EntitySet Name="WALLET_LIST" EntityType="Self.WALLET_LIST" />
+          <EntitySet Name="COINS_FOLLOWED_PRICES" EntityType="Self.COINS_FOLLOWED_PRICES" />
+          <EntitySet Name="FOLLOWING_POSTS" EntityType="Self.FOLLOWING_POSTS" />
+          <EntitySet Name="USER_COMMENT_LIKES" EntityType="Self.USER_COMMENT_LIKES" />
+          <AssociationSet Name="FK_COIN" Association="Self.FK_COIN">
+            <End Role="COIN" EntitySet="COINs" />
+            <End Role="COIN_VALUE" EntitySet="COIN_VALUE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COIN_FOLLOWED" Association="Self.FK_COIN_FOLLOWED">
+            <End Role="COIN" EntitySet="COINs" />
+            <End Role="COIN_FOLLOW" EntitySet="COIN_FOLLOW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COIN_POST" Association="Self.FK_COIN_POST">
+            <End Role="COIN" EntitySet="COINs" />
+            <End Role="POST" EntitySet="POSTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTIFICATION_COIN" Association="Self.FK_NOTIFICATION_COIN">
+            <End Role="COIN" EntitySet="COINs" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WALLET_COIN" Association="Self.FK_WALLET_COIN">
+            <End Role="COIN" EntitySet="COINs" />
+            <End Role="WALLET" EntitySet="WALLETs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PR_COIN_USR" Association="Self.FK_PR_COIN_USR">
+            <End Role="COIN_FOLLOW" EntitySet="COIN_FOLLOW" />
+            <End Role="PRICE_ALERT" EntitySet="PRICE_ALERT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_FOLLOW" Association="Self.FK_USER_FOLLOW">
+            <End Role="USERT" EntitySet="USERTs" />
+            <End Role="COIN_FOLLOW" EntitySet="COIN_FOLLOW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIKED_COMMENT" Association="Self.FK_LIKED_COMMENT">
+            <End Role="COMMENT" EntitySet="COMMENTs" />
+            <End Role="LIKE_DISLIKE" EntitySet="LIKE_DISLIKE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTIFICATION_COMMENT" Association="Self.FK_NOTIFICATION_COMMENT">
+            <End Role="COMMENT" EntitySet="COMMENTs" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_POST_COMMENT" Association="Self.FK_POST_COMMENT">
+            <End Role="POST" EntitySet="POSTs" />
+            <End Role="COMMENT" EntitySet="COMMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_COMMENT" Association="Self.FK_USER_COMMENT">
+            <End Role="USERT" EntitySet="USERTs" />
+            <End Role="COMMENT" EntitySet="COMMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVALID_LOGIN_USER" Association="Self.FK_INVALID_LOGIN_USER">
+            <End Role="USERT" EntitySet="USERTs" />
+            <End Role="INVALID_LOGIN" EntitySet="INVALID_LOGIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIKED_OBJECT_TYPE_ID" Association="Self.FK_LIKED_OBJECT_TYPE_ID">
+            <End Role="LIKED_OBJECT_TYPE" EntitySet="LIKED_OBJECT_TYPE" />
+            <End Role="LIKE_DISLIKE" EntitySet="LIKE_DISLIKE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIKED_POST" Association="Self.FK_LIKED_POST">
+            <End Role="POST" EntitySet="POSTs" />
+            <End Role="LIKE_DISLIKE" EntitySet="LIKE_DISLIKE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIKED_USER" Association="Self.FK_LIKED_USER">
+            <End Role="USERT" EntitySet="USERTs" />
+            <End Role="LIKE_DISLIKE" EntitySet="LIKE_DISLIKE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTIFICATION_LIKE" Association="Self.FK_NOTIFICATION_LIKE">
+            <End Role="LIKE_DISLIKE" EntitySet="LIKE_DISLIKE" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTIFICATION_POST" Association="Self.FK_NOTIFICATION_POST">
+            <End Role="POST" EntitySet="POSTs" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTIFICATION_TYPE" Association="Self.FK_NOTIFICATION_TYPE">
+            <End Role="NOTIFICATION_TYPE" EntitySet="NOTIFICATION_TYPE" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTIFICATION_USER" Association="Self.FK_NOTIFICATION_USER">
+            <End Role="USERT" EntitySet="USERTs" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_NOTIFICATION" Association="Self.FK_USER_NOTIFICATION">
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
+            <End Role="NOTIFIED_USER" EntitySet="NOTIFIED_USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTIFIED" Association="Self.FK_NOTIFIED">
+            <End Role="USERT" EntitySet="USERTs" />
+            <End Role="NOTIFIED_USER" EntitySet="NOTIFIED_USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_POST" Association="Self.FK_USER_POST">
+            <End Role="USERT" EntitySet="USERTs" />
+            <End Role="POST" EntitySet="POSTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VALID_LOGIN_USER" Association="Self.FK_VALID_LOGIN_USER">
+            <End Role="USERT" EntitySet="USERTs" />
+            <End Role="VALID_LOGIN" EntitySet="VALID_LOGIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WALLET_L_USER" Association="Self.FK_WALLET_L_USER">
+            <End Role="USERT" EntitySet="USERTs" />
+            <End Role="WALLET_LIST" EntitySet="WALLET_LIST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WALLET_L_WALLET" Association="Self.FK_WALLET_L_WALLET">
+            <End Role="WALLET" EntitySet="WALLETs" />
+            <End Role="WALLET_LIST" EntitySet="WALLET_LIST" />
+          </AssociationSet>
+          <AssociationSet Name="FOLLOWER" Association="Self.FOLLOWER">
+            <End Role="USERT" EntitySet="USERTs" />
+            <End Role="USERT1" EntitySet="USERTs" />
+          </AssociationSet>
+          <FunctionImport Name="LOGINUSER">
+            <Parameter Name="V_USER_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="V_USERNAME" Mode="In" Type="String" />
+            <Parameter Name="V_PASSWORD" Mode="In" Type="String" />
+          </FunctionImport>
+          <AssociationSet Name="FK_USER_NOTIFICATION1" Association="Model.FK_USER_NOTIFICATION1">
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
+            <End Role="NOTIFIED_USER" EntitySet="NOTIFIED_USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTIFIED1" Association="Model.FK_NOTIFIED1">
+            <End Role="USERT" EntitySet="USERTs" />
+            <End Role="NOTIFIED_USER" EntitySet="NOTIFIED_USER" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_USER_NOTIFICATION1">
+          <End Type="Model.NOTIFICATION" Role="NOTIFICATION" Multiplicity="1" />
+          <End Type="Model.NOTIFIED_USER" Role="NOTIFIED_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NOTIFICATION">
+              <PropertyRef Name="NOTIFICATION_ID" />
+            </Principal>
+            <Dependent Role="NOTIFIED_USER">
+              <PropertyRef Name="NOTIFIED_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTIFIED1">
+          <End Type="Model.USERT" Role="USERT" Multiplicity="1" />
+          <End Type="Model.NOTIFIED_USER" Role="NOTIFIED_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERT">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="NOTIFIED_USER">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="CoinWatchEntities">
+          <EntitySetMapping Name="COINs">
+            <EntityTypeMapping TypeName="Model.COIN">
+              <MappingFragment StoreEntitySet="COIN">
+                <ScalarProperty Name="COIN_ID" ColumnName="COIN_ID" />
+                <ScalarProperty Name="COIN_NAME" ColumnName="COIN_NAME" />
+                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COIN_FOLLOW">
+            <EntityTypeMapping TypeName="Model.COIN_FOLLOW">
+              <MappingFragment StoreEntitySet="COIN_FOLLOW">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="COIN_ID" ColumnName="COIN_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COIN_VALUE">
+            <EntityTypeMapping TypeName="Model.COIN_VALUE">
+              <MappingFragment StoreEntitySet="COIN_VALUE">
+                <ScalarProperty Name="COIN_ID" ColumnName="COIN_ID" />
+                <ScalarProperty Name="DATETIME" ColumnName="DATETIME" />
+                <ScalarProperty Name="COIN_VALUE1" ColumnName="COIN_VALUE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMMENTs">
+            <EntityTypeMapping TypeName="Model.COMMENT">
+              <MappingFragment StoreEntitySet="COMMENT">
+                <ScalarProperty Name="COMMENT_ID" ColumnName="COMMENT_ID" />
+                <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="COMMENT1" ColumnName="COMMENT" />
+                <ScalarProperty Name="DATETIME" ColumnName="DATETIME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INVALID_LOGIN">
+            <EntityTypeMapping TypeName="Model.INVALID_LOGIN">
+              <MappingFragment StoreEntitySet="INVALID_LOGIN">
+                <ScalarProperty Name="SESSION_ID" ColumnName="SESSION_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="INVAL_LOG_DATE" ColumnName="INVAL_LOG_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LIKE_DISLIKE">
+            <EntityTypeMapping TypeName="Model.LIKE_DISLIKE">
+              <MappingFragment StoreEntitySet="LIKE_DISLIKE">
+                <ScalarProperty Name="LIKE_ID" ColumnName="LIKE_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="LIKED_OBJECT_TYPE_ID" ColumnName="LIKED_OBJECT_TYPE_ID" />
+                <ScalarProperty Name="COMMENT_ID" ColumnName="COMMENT_ID" />
+                <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LIKED_OBJECT_TYPE">
+            <EntityTypeMapping TypeName="Model.LIKED_OBJECT_TYPE">
+              <MappingFragment StoreEntitySet="LIKED_OBJECT_TYPE">
+                <ScalarProperty Name="LIKED_OBJECT_TYPE_ID" ColumnName="LIKED_OBJECT_TYPE_ID" />
+                <ScalarProperty Name="LIKED_OBJECT_TYPE1" ColumnName="LIKED_OBJECT_TYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NOTIFICATIONs">
+            <EntityTypeMapping TypeName="Model.NOTIFICATION">
+              <MappingFragment StoreEntitySet="NOTIFICATION">
+                <ScalarProperty Name="NOTIFICATION_ID" ColumnName="NOTIFICATION_ID" />
+                <ScalarProperty Name="NOTIFICATION_TYPE_ID" ColumnName="NOTIFICATION_TYPE_ID" />
+                <ScalarProperty Name="COIN_ID" ColumnName="COIN_ID" />
+                <ScalarProperty Name="COMMENT_ID" ColumnName="COMMENT_ID" />
+                <ScalarProperty Name="LIKE_ID" ColumnName="LIKE_ID" />
+                <ScalarProperty Name="FOLLOWER_ID" ColumnName="FOLLOWER_ID" />
+                <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
+                <ScalarProperty Name="DATETIME" ColumnName="DATETIME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NOTIFICATION_TYPE">
+            <EntityTypeMapping TypeName="Model.NOTIFICATION_TYPE">
+              <MappingFragment StoreEntitySet="NOTIFICATION_TYPE">
+                <ScalarProperty Name="NOTIFICATION_TYPE_ID" ColumnName="NOTIFICATION_TYPE_ID" />
+                <ScalarProperty Name="NOTIFICATION_TYPE1" ColumnName="NOTIFICATION_TYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NOTIFIED_USER">
+            <EntityTypeMapping TypeName="Model.NOTIFIED_USER">
+              <MappingFragment StoreEntitySet="NOTIFIED_USER">
+                <ScalarProperty Name="NOTIFIED_ID" ColumnName="NOTIFIED_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="NOTIFICATION_SEEN" ColumnName="NOTIFICATION_SEEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POSTs">
+            <EntityTypeMapping TypeName="Model.POST">
+              <MappingFragment StoreEntitySet="POST">
+                <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="COIN_ID" ColumnName="COIN_ID" />
+                <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+                <ScalarProperty Name="DATETIME" ColumnName="DATETIME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRICE_ALERT">
+            <EntityTypeMapping TypeName="Model.PRICE_ALERT">
+              <MappingFragment StoreEntitySet="PRICE_ALERT">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="COIN_ID" ColumnName="COIN_ID" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="IS_GREATER_THAN" ColumnName="IS_GREATER_THAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERTs">
+            <EntityTypeMapping TypeName="Model.USERT">
+              <MappingFragment StoreEntitySet="USERT">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="ABOUTME" ColumnName="ABOUTME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VALID_LOGIN">
+            <EntityTypeMapping TypeName="Model.VALID_LOGIN">
+              <MappingFragment StoreEntitySet="VALID_LOGIN">
+                <ScalarProperty Name="SESSION_ID" ColumnName="SESSION_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="LOGIN_DATE" ColumnName="LOGIN_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WALLETs">
+            <EntityTypeMapping TypeName="Model.WALLET">
+              <MappingFragment StoreEntitySet="WALLET">
+                <ScalarProperty Name="WALLET_ID" ColumnName="WALLET_ID" />
+                <ScalarProperty Name="COIN_ID" ColumnName="COIN_ID" />
+                <ScalarProperty Name="COIN_ADDRESS" ColumnName="COIN_ADDRESS" />
+                <ScalarProperty Name="BALANCE" ColumnName="BALANCE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WALLET_LIST">
+            <EntityTypeMapping TypeName="Model.WALLET_LIST">
+              <MappingFragment StoreEntitySet="WALLET_LIST">
+                <ScalarProperty Name="WALLET_ID" ColumnName="WALLET_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COINS_FOLLOWED_PRICES">
+            <EntityTypeMapping TypeName="Model.COINS_FOLLOWED_PRICES">
+              <MappingFragment StoreEntitySet="COINS_FOLLOWED_PRICES">
+                <ScalarProperty Name="COIN_ID" ColumnName="COIN_ID" />
+                <ScalarProperty Name="COIN_NAME" ColumnName="COIN_NAME" />
+                <ScalarProperty Name="COIN_VALUE" ColumnName="COIN_VALUE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FOLLOWING_POSTS">
+            <EntityTypeMapping TypeName="Model.FOLLOWING_POSTS">
+              <MappingFragment StoreEntitySet="FOLLOWING_POSTS">
+                <ScalarProperty Name="LOGGED_IN_USER" ColumnName="LOGGED_IN_USER" />
+                <ScalarProperty Name="FOLLOWED_USER" ColumnName="FOLLOWED_USER" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="POST" ColumnName="POST" />
+                <ScalarProperty Name="COIN_NAME" ColumnName="COIN_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_COMMENT_LIKES">
+            <EntityTypeMapping TypeName="Model.USER_COMMENT_LIKES">
+              <MappingFragment StoreEntitySet="USER_COMMENT_LIKES">
+                <ScalarProperty Name="COMMENT_ID" ColumnName="COMMENT_ID" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+                <ScalarProperty Name="PERSON_WHO_LIKED" ColumnName="PERSON_WHO_LIKED" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FOLLOWER" TypeName="Model.FOLLOWER" StoreEntitySet="FOLLOWER">
+            <EndProperty Name="USERT">
+              <ScalarProperty Name="USER_ID" ColumnName="FOLLOWED_ID" />
+            </EndProperty>
+            <EndProperty Name="USERT1">
+              <ScalarProperty Name="USER_ID" ColumnName="FOLLOWER_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="LOGINUSER" FunctionName="Model.Store.LOGINUSER" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

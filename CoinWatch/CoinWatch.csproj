@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{077C87D4-E042-419D-8BE3-007E80FEAEC1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CoinWatch</RootNamespace>
+    <AssemblyName>CoinWatch</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.12.2.1100\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.EntityFramework.12.2.1100\lib\net45\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices.Protocols" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="COIN.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="COINS_FOLLOWED_PRICES.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CoinWatchDataSet.cs">
+      <DependentUpon>CoinWatchDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CoinWatchDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CoinWatchDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CoinWatchModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CoinWatchModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CoinWatchModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CoinWatchModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CoinWatchModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="COIN_FOLLOW.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="COIN_VALUE.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="COMMENT.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FOLLOWING_POSTS.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="INVALID_LOGIN.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LIKED_OBJECT_TYPE.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LIKE_DISLIKE.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NOTIFICATION.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NOTIFICATION_TYPE.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NOTIFIED_USER.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POST.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PRICE_ALERT.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="USERT.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USER_COMMENT_LIKES.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VALID_LOGIN.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WALLET.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WALLET_LIST.cs">
+      <DependentUpon>CoinWatchModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="CoinWatchDataSet.xsc">
+      <DependentUpon>CoinWatchDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CoinWatchDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CoinWatchDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CoinWatchDataSet.xss">
+      <DependentUpon>CoinWatchDataSet.xsd</DependentUpon>
+    </None>
+    <EntityDeploy Include="CoinWatchModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CoinWatchModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="CoinWatchModel.edmx.diagram">
+      <DependentUpon>CoinWatchModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CoinWatchModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CoinWatchModel.edmx</DependentUpon>
+      <LastGenOutput>CoinWatchModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="CoinWatchModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CoinWatchModel.edmx</DependentUpon>
+      <LastGenOutput>CoinWatchModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
